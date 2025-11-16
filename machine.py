@@ -24,15 +24,9 @@ class Machine:
         self.currPlayer = Player()
         self.ui = UI(self.currPlayer)
 
-        # Import sounds
+        # Import sounds (Comentate ca în original)
         # self.spin_sound = pygame.mixer.Sound('audio/spinclip.mp3')
-        # self.spin_sound.set_volume(0.15)
-        # self.win_three = pygame.mixer.Sound('audio/winthree.wav')
-        # self.win_three.set_volume(0.6)
-        # self.win_four = pygame.mixer.Sound('audio/winfour.wav')
-        # self.win_four.set_volume(0.7)
-        # self.win_five = pygame.mixer.Sound('audio/winfive.wav')
-        # self.win_five.set_volume(0.8)
+        # ... (restul sunetelor)
 
     def cooldowns(self):
         # Only lets player spin if all reels are NOT spinning
@@ -47,7 +41,6 @@ class Machine:
 
             if self.check_wins(self.spin_result):
                 self.win_data = self.check_wins(self.spin_result)
-                # Play the win sound
                 # self.play_win_sound(self.win_data)
                 self.pay_player(self.win_data, self.currPlayer)
                 self.win_animation_ongoing = True
@@ -120,14 +113,14 @@ class Machine:
         curr_player.last_payout = spin_payout
         curr_player.total_won += spin_payout
 
-    # You need to provide sounds and load them in the Machine init function for this to work!
     def play_win_sound(self, win_data):
         sum = 0
         for item in win_data.values():
             sum += len(item[1])
-        if sum == 3: self.win_three.play()
-        elif sum == 4: self.win_four.play()
-        elif sum > 4: self.win_five.play()
+        # if sum == 3: self.win_three.play()
+        # elif sum == 4: self.win_four.play()
+        # elif sum > 4: self.win_five.play()
+        pass # Am adăugat pass pentru a fi sintactic corect
 
     def win_animation(self):
         if self.win_animation_ongoing and self.win_data:
@@ -148,19 +141,10 @@ class Machine:
 
     def update(self, delta_time):
         self.cooldowns()
-        self.input()
+        self.input() # <- LOGICA TA ORIGINALĂ DE INPUT ESTE AICI
         self.draw_reels(delta_time)
         for reel in self.reel_list:
             self.reel_list[reel].symbol_list.draw(self.display_surface)
             self.reel_list[reel].symbol_list.update()
         self.ui.update()
         self.win_animation()
-
-        # Balance/payout debugger
-        # debug_player_data = self.currPlayer.get_data()
-        # machine_balance = "{:.2f}".format(self.machine_balance)
-        # if self.currPlayer.last_payout:
-        #     last_payout = "{:.2f}".format(self.currPlayer.last_payout)
-        # else:
-        #     last_payout = "N/A"
-        # debug(f"Player balance: {debug_player_data['balance']} | Machine balance: {machine_balance} | Last payout: {last_payout}")

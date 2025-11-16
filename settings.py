@@ -20,16 +20,7 @@ UI_FONT = 'graphics/font/kidspace.ttf'
 UI_FONT_SIZE = 25
 WIN_FONT_SIZE = 110
 
-# 5 Symbols for demo
-# symbols = {
-#     'diamond': f"{SYM_PATH}/0_diamond.png", 
-#     'floppy': f"{SYM_PATH}/0_floppy.png",
-#     'hourglass': f"{SYM_PATH}/0_hourglass.png",
-#     'seven': f"{SYM_PATH}/0_seven.png",
-#     'telephone': f"{SYM_PATH}/0_telephone.png"
-# }
 
-# 4 Symbols for more wins
 symbols = {
     'gagica': f"{SYM_PATH}/gagica copy.png", 
     'salba': f"{SYM_PATH}/salba de bani.png",
